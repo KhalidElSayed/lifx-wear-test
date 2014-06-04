@@ -1,4 +1,6 @@
-package com.gcx.lifxtest.app;
+package de.dp.lifxtest.app;
+
+import com.gcx.lifxtest.app.R;
 
 import android.app.Activity;
 import android.os.Bundle;
