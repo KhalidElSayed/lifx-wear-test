@@ -14,7 +14,7 @@ public class MasterActivity extends Activity {
         setContentView(R.layout.activity_master);
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
-                    .add(R.id.container, new LightsFragment())
+                    .replace(R.id.container, new LightsFragment())
                     .commit();
         }
 
