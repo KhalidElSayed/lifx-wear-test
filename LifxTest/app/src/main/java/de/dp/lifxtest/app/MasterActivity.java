@@ -20,7 +20,6 @@ public class MasterActivity extends Activity {
                     .commit();
         }
 
-
     }
 
 
@@ -42,6 +41,5 @@ public class MasterActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 
 }

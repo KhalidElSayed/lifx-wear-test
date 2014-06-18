@@ -8,7 +8,6 @@ import com.gcx.lifxtest.app.R;
 
 import android.annotation.TargetApi;
 import android.app.Fragment;
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -16,6 +15,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.v4.app.NotificationCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -128,23 +128,28 @@ public class LightsFragment extends Fragment implements View.OnClickListener {
 // notification is selected
 
         Intent intent = new Intent(getActivity(), MasterActivity.class);
+        intent.putExtra("lifx", true);
         PendingIntent pIntent = PendingIntent.getActivity(getActivity(), 0, intent, 0);
-
-// build notification
-// the addAction re-use the same intent to keep the example short
-        Notification n = new Notification.Builder(getActivity())
-                .setContentTitle("Control your lifx")
-                .setContentText("turn light on / off")
-                .setSmallIcon(R.drawable.ic_launcher)
-                .setContentIntent(pIntent)
-                .setAutoCancel(false)
-                .addAction(R.drawable.ic_launcher, "On", pIntent)
-                .addAction(R.drawable.ic_launcher, "Off", pIntent).build();
 
         NotificationManager notificationManager =
                 (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
 
-        notificationManager.notify(0, n);
+//        // Build an intent for an action to view a map
+//        Intent mapIntent = new Intent(Intent.ACTION_VIEW);
+//        PendingIntent mapPendingIntent =
+//                PendingIntent.getActivity(getActivity(), 0, mapIntent, 0);
+
+        NotificationCompat.Builder notificationBuilder =
+                new NotificationCompat.Builder(getActivity())
+                        .setSmallIcon(R.drawable.ic_launcher)
+                        .setContentTitle("Control your lifx")
+                        .setContentText("turn light on / off")
+                        .setAutoCancel(false)
+                        .addAction(R.drawable.ic_launcher,
+                                "On / Off", pIntent);
+
+        notificationManager.notify(0, notificationBuilder.build());
+
 
     }
 
