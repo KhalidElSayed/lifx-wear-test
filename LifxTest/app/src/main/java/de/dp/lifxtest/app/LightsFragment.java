@@ -52,7 +52,7 @@ public class LightsFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             // turn all lights off
             case R.id.button:
-//                createNotification();
+                createNotification();
                 if (mLocalNetworkContext.getAllLightsCollection().getFuzzyPowerState()
                         == LFXTypes.LFXFuzzyPowerState.OFF) {
                     mLocalNetworkContext.getAllLightsCollection()
@@ -123,24 +123,28 @@ public class LightsFragment extends Fragment implements View.OnClickListener {
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public void createNotification() {
-        // Prepare intent which is triggered if the
-        // notification is selected
+
+        // prepare intent which is triggered if the
+// notification is selected
+
         Intent intent = new Intent(getActivity(), MasterActivity.class);
         PendingIntent pIntent = PendingIntent.getActivity(getActivity(), 0, intent, 0);
 
-        // Build notification
-        Notification noti = new Notification.Builder(getActivity())
-                .setContentTitle("Turn light on/off")
+// build notification
+// the addAction re-use the same intent to keep the example short
+        Notification n = new Notification.Builder(getActivity())
+                .setContentTitle("Control your lifx")
+                .setContentText("turn light on / off")
+                .setSmallIcon(R.drawable.ic_launcher)
                 .setContentIntent(pIntent)
-                .addAction(R.drawable.ic_launcher, "On/Off", pIntent)
-                .build();
-        NotificationManager notificationManager = (NotificationManager) getActivity()
-                .getSystemService(
-                        Context.NOTIFICATION_SERVICE);
-        // hide the notification after its selected
-        noti.flags |= Notification.FLAG_AUTO_CANCEL;
+                .setAutoCancel(false)
+                .addAction(R.drawable.ic_launcher, "On", pIntent)
+                .addAction(R.drawable.ic_launcher, "Off", pIntent).build();
 
-        notificationManager.notify(0, noti);
+        NotificationManager notificationManager =
+                (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+
+        notificationManager.notify(0, n);
 
     }
 
