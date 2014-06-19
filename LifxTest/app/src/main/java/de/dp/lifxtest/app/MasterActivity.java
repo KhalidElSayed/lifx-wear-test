@@ -1,4 +1,6 @@
-package com.gcx.lifxtest.app;
+package de.dp.lifxtest.app;
+
+import com.gcx.lifxtest.app.R;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -17,7 +19,6 @@ public class MasterActivity extends Activity {
                     .replace(R.id.container, new LightsFragment())
                     .commit();
         }
-
 
     }
 
@@ -40,6 +41,5 @@ public class MasterActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 
 }
