@@ -125,7 +125,7 @@ public class LightsFragment extends Fragment implements View.OnClickListener {
     public void createNotification() {
 
         // prepare intent which is triggered if the
-// notification is selected
+        // notification button is selected
 
         Intent intent = new Intent(getActivity(), MasterActivity.class);
         intent.putExtra("lifx", true);
@@ -133,11 +133,6 @@ public class LightsFragment extends Fragment implements View.OnClickListener {
 
         NotificationManager notificationManager =
                 (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
-
-//        // Build an intent for an action to view a map
-//        Intent mapIntent = new Intent(Intent.ACTION_VIEW);
-//        PendingIntent mapPendingIntent =
-//                PendingIntent.getActivity(getActivity(), 0, mapIntent, 0);
 
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(getActivity())
