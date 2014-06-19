@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import lifx.java.android.client.LFXClient;
 import lifx.java.android.entities.LFXTypes;
@@ -105,6 +106,11 @@ public class LightsFragment extends Fragment implements View.OnClickListener {
         mLocalNetworkContext = LFXClient.getSharedInstance(getActivity())
                 .getLocalNetworkContext();
         mLocalNetworkContext.connect();
+
+        if (getArguments() != null) {
+            getArguments().getBoolean("lifx", false);
+            Toast.makeText(getActivity(), "bundle contains boolean", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -147,6 +153,7 @@ public class LightsFragment extends Fragment implements View.OnClickListener {
 
 
     }
+
 
     @Override
     public void onDestroy() {

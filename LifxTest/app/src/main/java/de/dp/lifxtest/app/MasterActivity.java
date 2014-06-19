@@ -14,9 +14,12 @@ public class MasterActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_master);
+        LightsFragment lightsFragment = new LightsFragment();
+        lightsFragment.setArguments(getIntent().getExtras());
+
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
-                    .replace(R.id.container, new LightsFragment())
+                    .replace(R.id.container, lightsFragment)
                     .commit();
         }
 
